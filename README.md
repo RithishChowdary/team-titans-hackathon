@@ -32,9 +32,13 @@ The platform enables travelers to efficiently plan personalized trips, stay with
 
 👥 Team Members and Roles
 Team Member	Role	Responsibilities
+
 Rithish Chowdary      --  Database Engineer	Database schema design, normalization (3NF), indexes, joins, query optimization
+
 Pinninti Sni Kiram    --	Frontend Developer	React UI, dashboard, charts, responsive design
+
 Routhu Naveen Kumar   --	Backend Developer	Spring Boot REST APIs, WebSocket, scheduler, authentication
+
 [Member 4 Name]	AI/ML & Integration Engineer	Recommendation engine, sentiment analysis, testing, documentation
 
 ## 🏠 Landing Page
