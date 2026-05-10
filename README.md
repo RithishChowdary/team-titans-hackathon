@@ -17,7 +17,7 @@ The application allows users to:
 - View day-wise travel timelines
 - Maintain packing checklists
 - Save trip notes and reminders
-- Share itineraries publicly with friends
+- Share itineraries publicly with friend
 
 The goal of Traveloop is to simplify complex travel planning by combining itinerary management, budget tracking, and collaboration into one responsive web application.
 
