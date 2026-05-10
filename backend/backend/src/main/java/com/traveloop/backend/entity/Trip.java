@@ -28,4 +28,6 @@ public class Trip {
     private Double budget;
 
     private String shareToken;
+
+    private Integer travelers;
 }

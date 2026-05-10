@@ -23,6 +23,7 @@ public class TripService {
                 .endDate(request.getEndDate())
                 .budget(request.getBudget())
                 .shareToken(UUID.randomUUID().toString())
+                .travelers(request.getTravelers())
                 .build();
 
         return tripRepository.save(trip);
