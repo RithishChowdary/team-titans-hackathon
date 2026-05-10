@@ -1,14 +1,7 @@
-import axios from "axios";
+import API from "./api";
 
-const API = axios.create({
-  baseURL: "http://localhost:8080/api",
-});
+export const createTrip = (tripData) =>
+  API.post("/trips", tripData);
 
-export const createTrip = (data) =>
-  API.post("/trips", data);
-
-export const getTrips = () =>
-  API.get("/trips");
-
-export const getTripById = (id) =>
-  API.get(`/trips/${id}`);
+export const getUserTrips = (userId) =>
+  API.get(`/trips/user/${userId}`);
