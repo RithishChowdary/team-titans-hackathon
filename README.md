@@ -30,6 +30,13 @@ This project was developed for the **Odoo × Parul University Hackathon 2026** u
 
 The platform enables travelers to efficiently plan personalized trips, stay within budget, and gain complete visibility into their travel journey. :contentReference[oaicite:0]{index=0}
 
+👥 Team Members and Roles
+Team Member	Role	Responsibilities
+Rithish Chowdary      --  Database Engineer	Database schema design, normalization (3NF), indexes, joins, query optimization
+Pinninti Sni Kiram    --	Frontend Developer	React UI, dashboard, charts, responsive design
+Routhu Naveen Kumar   --	Backend Developer	Spring Boot REST APIs, WebSocket, scheduler, authentication
+[Member 4 Name]	AI/ML & Integration Engineer	Recommendation engine, sentiment analysis, testing, documentation
+
 ## 🏠 Landing Page
 
 The Traveloop landing page serves as the entry point to the application and introduces users to the platform with a visually engaging hero section.
@@ -113,6 +120,7 @@ This feature gives users an immediate visual overview of their chosen destinatio
 <img width="1600" height="821" alt="image" src="https://github.com/user-attachments/assets/e9ac085d-4c6d-4eb6-95a1-00929ef99bc6" />
 
 
+.
 
 
 
