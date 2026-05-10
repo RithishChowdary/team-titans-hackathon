@@ -62,6 +62,9 @@ The authentication module ensures that each user has a private workspace where t
 <img width="1600" height="806" alt="image" src="https://github.com/user-attachments/assets/815e70e3-e093-4765-800f-3dee6864b7f2" />
 
 
+
+
+
 <img width="1600" height="808" alt="image" src="https://github.com/user-attachments/assets/acd7a3f3-3ed6-4fb1-8e6a-60e08a5e6d4c" />
 
 ## 📊 Dashboard
@@ -86,6 +89,8 @@ The Dashboard helps users quickly access their travel data, monitor trip progres
 
 <img width="1600" height="822" alt="image" src="https://github.com/user-attachments/assets/3b53b33b-689c-4ff9-ba61-3fd9ad06ea4b" />
 
+
+
 ## ✈️ Dynamic Destination Preview
 
 The **Create New Trip** screen includes a smart destination preview panel that updates automatically based on the destination selected by the user.
@@ -107,7 +112,14 @@ This feature gives users an immediate visual overview of their chosen destinatio
 
 <img width="1600" height="821" alt="image" src="https://github.com/user-attachments/assets/e9ac085d-4c6d-4eb6-95a1-00929ef99bc6" />
 
+
+
+
+
 <img width="1600" height="822" alt="image" src="https://github.com/user-attachments/assets/ab9850ce-cf11-4c2e-806c-1480b4aab50b" />
+
+
+
 
 ## 🗺️ Itinerary Builder
 
@@ -115,11 +127,16 @@ The Itinerary Builder allows users to organize their trip by viewing key trip de
 
 <img width="1600" height="813" alt="image" src="https://github.com/user-attachments/assets/3ec647a5-e888-4809-a73b-03814f8ed8ca" />
 
+
+
+
 ## 🧳 My Trips
 
 The **My Trips** section displays all trips created by the user in visually rich cards. Each card shows the destination image, trip budget, travel date, and current trip status, allowing users to quickly view and manage their planned journeys.
 
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/5024ac6f-f96f-4ac4-a79f-11608c94300c" />
+
+
 
 ✨ Key Features
 Authentication
