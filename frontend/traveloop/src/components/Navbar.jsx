@@ -1,34 +1,25 @@
+import { useNavigate } from "react-router-dom";
 import { Plane } from "lucide-react";
 
 export default function Navbar() {
-
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  const Navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
-
     localStorage.removeItem("user");
 
-    window.location.href = "/login";
+    Navigate("/login");
   };
 
   return (
-
     <div className="bg-slate-900 border-b border-slate-800 px-10 py-5 flex justify-between items-center">
-
       <div className="flex items-center gap-3">
-
         <Plane className="text-rose-500" />
 
-        <h1 className="text-2xl font-bold text-white">
-          Traveloop
-        </h1>
-
+        <h1 className="text-2xl font-bold text-white">Traveloop</h1>
       </div>
 
       <div className="flex items-center gap-4">
-
         <img
           src={user?.photo}
           alt=""
@@ -36,15 +27,9 @@ export default function Navbar() {
         />
 
         <div>
+          <p className="text-white font-semibold">{user?.name}</p>
 
-          <p className="text-white font-semibold">
-            {user?.name}
-          </p>
-
-          <p className="text-slate-400 text-sm">
-            {user?.email}
-          </p>
-
+          <p className="text-slate-400 text-sm">{user?.email}</p>
         </div>
 
         <button
@@ -54,8 +39,10 @@ export default function Navbar() {
           Logout
         </button>
 
-      </div>
+        <button onClick={() => navigate("/dashboard")}>Dashboard</button>
 
+        <button onClick={() => navigate("/planner")}>Planner</button>
+      </div>
     </div>
   );
 }

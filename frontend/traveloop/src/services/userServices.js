@@ -1,4 +1,9 @@
 import API from "./api";
 
-export const syncUser = (userData) =>
-  API.post("/users/sync", userData);
+export const syncUser = async (userData) => {
+
+  return await API.post(
+    "/users/sync",
+    userData
+  );
+};

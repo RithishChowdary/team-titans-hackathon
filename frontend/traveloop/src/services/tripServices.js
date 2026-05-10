@@ -1,7 +1,29 @@
 import API from "./api";
 
-export const createTrip = (tripData) =>
-  API.post("/trips", tripData);
+export const createTrip = async (
+  tripData
+) => {
 
-export const getUserTrips = (userId) =>
-  API.get(`/trips/user/${userId}`);
+  return await API.post(
+    "/trips",
+    tripData
+  );
+};
+
+export const getUserTrips = async (
+  userId
+) => {
+
+  return await API.get(
+    `/trips/user/${userId}`
+  );
+};
+
+export const getTripById = async (
+  tripId
+) => {
+
+  return await API.get(
+    `/trips/${tripId}`
+  );
+};
