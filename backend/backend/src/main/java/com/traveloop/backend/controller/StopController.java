@@ -1,32 +1,34 @@
 package com.traveloop.backend.controller;
 
-import com.traveloop.backend.dto.StopRequest;
-import com.traveloop.backend.entity.Stop;
+import com.traveloop.backend.entity.TripStop;
 import com.traveloop.backend.service.StopService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@RequestMapping("/api/stops")
+@CrossOrigin("*")
 public class StopController {
 
     private final StopService stopService;
 
-    @PostMapping("/api/trips/{tripId}/stops")
-    public Stop addStop(@PathVariable Long tripId,
-                        @RequestBody StopRequest request) {
-        return stopService.addStop(tripId, request);
+    public StopController(StopService stopService) {
+        this.stopService = stopService;
     }
 
-    @GetMapping("/api/trips/{tripId}/stops")
-    public List<Stop> getStops(@PathVariable Long tripId) {
-        return stopService.getStops(tripId);
+    @PostMapping
+    public TripStop createStop(@RequestBody TripStop stop) {
+        return stopService.save(stop);
     }
 
-    @DeleteMapping("/api/stops/{id}")
+    @GetMapping("/trip/{tripId}")
+    public List<TripStop> getStopsByTrip(@PathVariable Long tripId) {
+        return stopService.getByTripId(tripId);
+    }
+
+    @DeleteMapping("/{id}")
     public void deleteStop(@PathVariable Long id) {
-        stopService.deleteStop(id);
+        stopService.delete(id);
     }
 }
