@@ -23,6 +23,7 @@ export default function LoginPage() {
 
         email: user.email,
       });
+      console.log("BACKEND USER:", response.data);
 
       localStorage.setItem("user", JSON.stringify(response.data));
 

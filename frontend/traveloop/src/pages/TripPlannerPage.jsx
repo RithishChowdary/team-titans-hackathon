@@ -1,170 +1,349 @@
+import { useEffect, useState } from "react";
+
+import { useParams } from "react-router-dom";
+
 import {
   MapPin,
+  Wallet,
   Calendar,
-  Plus,
-  Plane,
+  Users,
 } from "lucide-react";
 
+import Navbar from "../components/Navbar";
+
+import { getTripById } from "../services/tripServices";
+
+import {
+  addStop,
+  getStops,
+  deleteStop,
+} from "../services/stopServices";
+
 export default function TripPlannerPage() {
- async function addStop(tripId, stopData) {
-    // Implementation for adding a stop to a trip
+
+  const { id } = useParams();
+
+  const [trip, setTrip] =
+    useState(null);
+
+  const [stops, setStops] =
+    useState([]);
+
+  const [cityName, setCityName] =
+    useState("");
+
+  useEffect(() => {
+
+    fetchTrip();
+
+    fetchStops();
+
+  }, []);
+
+  const fetchTrip = async () => {
+
+    try {
+
+      const response =
+        await getTripById(id);
+
+      console.log(
+        "TRIP:",
+        response.data
+      );
+
+      setTrip(response.data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  };
+
+  const fetchStops = async () => {
+
+    try {
+
+      const response =
+        await getStops(id);
+
+      console.log(
+        "STOPS:",
+        response.data
+      );
+
+      setStops(response.data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  };
+
+  const handleAddStop =
+    async () => {
+
+      if (!cityName) {
+
+        alert("Enter city name");
+
+        return;
+      }
+
+      try {
+
+        const payload = {
+          cityName,
+        };
+
+        const response =
+          await addStop(
+            id,
+            payload
+          );
+
+        setStops([
+          ...stops,
+          response.data,
+        ]);
+
+        setCityName("");
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+    };
+
+  const handleDeleteStop =
+    async (stopId) => {
+
+      try {
+
+        await deleteStop(stopId);
+
+        setStops(
+          stops.filter(
+            (stop) =>
+              stop.id !== stopId
+          )
+        );
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+    };
+
+  if (!trip) {
+
+    return (
+      <div className="text-white p-10">
+        Loading...
+      </div>
+    );
   }
 
   return (
 
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-slate-950">
 
-      {/* TOP HERO */}
+      <Navbar />
 
-      <div
-        className="h-[350px] bg-cover bg-center relative"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070')",
-        }}
-      >
+      <div className="p-10">
 
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="bg-slate-900 rounded-3xl p-10 border border-slate-800">
 
-        <div className="relative z-10 h-full flex items-end px-12 pb-12">
+          <h1 className="text-5xl font-bold text-white">
 
-          <div>
+            {trip.title}
 
-            <h1 className="text-6xl font-bold">
-              Europe Adventure
-            </h1>
+          </h1>
 
-            <p className="text-slate-300 mt-4 text-xl">
-              Multi-city travel itinerary planner
-            </p>
+          <p className="text-slate-400 mt-3 text-lg">
 
-          </div>
+            Your personalized trip plan
 
-        </div>
+          </p>
 
-      </div>
+          <div className="grid md:grid-cols-4 gap-6 mt-10">
 
-      {/* MAIN CONTENT */}
+            <div className="bg-slate-800 p-6 rounded-2xl">
 
-      <div className="max-w-6xl mx-auto px-6 py-16">
+              <div className="flex items-center gap-3 text-rose-500">
 
-        {/* TOP ACTION BAR */}
+                <MapPin />
 
-        <div className="flex justify-between items-center mb-12 flex-wrap gap-5">
-
-          <div>
-
-            <h2 className="text-4xl font-bold">
-              Trip Timeline
-            </h2>
-
-            <p className="text-slate-400 mt-2">
-              Organize cities and activities beautifully
-            </p>
-
-          </div>
-
-          <button
-            className="bg-rose-600 hover:bg-rose-700 px-6 py-4 rounded-2xl flex items-center gap-3 text-lg font-semibold transition-all duration-300 hover:scale-105"
-          >
-
-            <Plus size={22} />
-
-            Add Stop
-
-          </button>
-
-        </div>
-
-        {/* TIMELINE */}
-
-        <div className="relative border-l-2 border-slate-700 ml-5 space-y-14">
-
-          {stops.map((stop, index) => (
-
-            <div
-              key={index}
-              className="relative pl-12"
-            >
-
-              {/* TIMELINE DOT */}
-
-              <div className="absolute left-[-18px] top-5 bg-rose-600 p-3 rounded-full">
-
-                <Plane size={18} />
+                <h3 className="font-semibold">
+                  Destination
+                </h3>
 
               </div>
 
-              {/* CARD */}
+              <p className="text-white text-xl mt-4">
 
-              <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl hover:scale-[1.02] transition-all duration-300">
+                {trip.destination}
 
-                {/* HEADER */}
-
-                <div className="flex justify-between items-center flex-wrap gap-4">
-
-                  <div>
-
-                    <h3 className="text-4xl font-bold">
-                      {stop.city}
-                    </h3>
-
-                    <div className="flex items-center gap-2 mt-3 text-slate-400">
-
-                      <MapPin size={18} />
-
-                      <p>{stop.country}</p>
-
-                    </div>
-
-                  </div>
-
-                  <div className="flex items-center gap-3 text-slate-300 bg-slate-800 px-5 py-3 rounded-2xl">
-
-                    <Calendar size={18} />
-
-                    <p>{stop.date}</p>
-
-                  </div>
-
-                </div>
-
-                {/* ACTIVITIES */}
-
-                <div className="mt-10">
-
-                  <h4 className="text-2xl font-semibold mb-6">
-                    Activities
-                  </h4>
-
-                  <div className="grid md:grid-cols-3 gap-5">
-
-                    {stop.activities.map(
-                      (activity, i) => (
-
-                        <div
-                          key={i}
-                          className="bg-slate-800 border border-slate-700 p-5 rounded-2xl hover:border-rose-500 transition-all"
-                        >
-
-                          <p className="text-slate-200">
-                            {activity}
-                          </p>
-
-                        </div>
-
-                      )
-                    )}
-
-                  </div>
-
-                </div>
-
-              </div>
+              </p>
 
             </div>
 
-          ))}
+            <div className="bg-slate-800 p-6 rounded-2xl">
+
+              <div className="flex items-center gap-3 text-rose-500">
+
+                <Wallet />
+
+                <h3 className="font-semibold">
+                  Budget
+                </h3>
+
+              </div>
+
+              <p className="text-white text-xl mt-4">
+
+                ₹ {trip.budget}
+
+              </p>
+
+            </div>
+
+            <div className="bg-slate-800 p-6 rounded-2xl">
+
+              <div className="flex items-center gap-3 text-rose-500">
+
+                <Calendar />
+
+                <h3 className="font-semibold">
+                  Dates
+                </h3>
+
+              </div>
+
+              <p className="text-white text-md mt-4">
+
+                {trip.startDate}
+
+              </p>
+
+              <p className="text-white text-md">
+
+                {trip.endDate}
+
+              </p>
+
+            </div>
+
+            <div className="bg-slate-800 p-6 rounded-2xl">
+
+              <div className="flex items-center gap-3 text-rose-500">
+
+                <Users />
+
+                <h3 className="font-semibold">
+                  Travelers
+                </h3>
+
+              </div>
+
+              <p className="text-white text-xl mt-4">
+
+                {trip.travelers}
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* STOPS SECTION */}
+
+        <div className="mt-12">
+
+          <h2 className="text-3xl text-white font-bold mb-6">
+
+            Trip Stops
+
+          </h2>
+
+          <div className="flex gap-4 mb-8">
+
+            <input
+              type="text"
+              placeholder="Add City"
+              value={cityName}
+              onChange={(e) =>
+                setCityName(
+                  e.target.value
+                )
+              }
+              className="flex-1 bg-slate-800 border border-slate-700 text-white p-4 rounded-2xl outline-none"
+            />
+
+            <button
+              onClick={handleAddStop}
+              className="bg-rose-600 hover:bg-rose-700 px-6 rounded-2xl text-white font-semibold"
+            >
+
+              Add Stop
+
+            </button>
+
+          </div>
+
+          {
+            stops.length === 0 ? (
+
+              <p className="text-slate-400">
+
+                No stops added yet.
+
+              </p>
+
+            ) : (
+
+              <div className="grid md:grid-cols-3 gap-6">
+
+                {stops.map((stop) => (
+
+                  <div
+                    key={stop.id}
+                    className="bg-slate-900 border border-slate-800 p-6 rounded-2xl"
+                  >
+
+                    <h3 className="text-2xl text-white font-bold">
+
+                      {stop.cityName}
+
+                    </h3>
+
+                    <button
+                      onClick={() =>
+                        handleDeleteStop(
+                          stop.id
+                        )
+                      }
+                      className="mt-5 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-xl text-white"
+                    >
+
+                      Delete
+
+                    </button>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            )
+          }
 
         </div>
 

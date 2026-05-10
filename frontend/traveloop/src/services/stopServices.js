@@ -1,30 +1,31 @@
-import API from "./api";
+import axios from "axios";
 
-export const addStop = async (
+const API =
+  "http://localhost:8080/api";
+
+export const addStop = (
   tripId,
-  stopData
+  data
 ) => {
 
-  return await API.post(
-    `/trips/${tripId}/stops`,
-    stopData
+  return axios.post(
+    `${API}/trips/${tripId}/stops`,
+    data
   );
 };
 
-export const getStops = async (
+export const getStops = (
   tripId
 ) => {
 
-  return await API.get(
-    `/trips/${tripId}/stops`
+  return axios.get(
+    `${API}/trips/${tripId}/stops`
   );
 };
 
-export const deleteStop = async (
-  stopId
-) => {
+export const deleteStop = (id) => {
 
-  return await API.delete(
-    `/stops/${stopId}`
+  return axios.delete(
+    `${API}/stops/${id}`
   );
 };

@@ -1,29 +1,19 @@
-import API from "./api";
+import axios from "axios";
 
-export const createTrip = async (
-  tripData
-) => {
+const API = "http://localhost:8080/api";
 
-  return await API.post(
-    "/trips",
-    tripData
+export const createTrip = (data) => {
+  return axios.post(`${API}/trips`, data);
+};
+
+export const getUserTrips = (userId) => {
+  return axios.get(
+    `${API}/trips/user/${userId}`
   );
 };
 
-export const getUserTrips = async (
-  userId
-) => {
-
-  return await API.get(
-    `/trips/user/${userId}`
-  );
-};
-
-export const getTripById = async (
-  tripId
-) => {
-
-  return await API.get(
-    `/trips/${tripId}`
+export const getTripById = (id) => {
+  return axios.get(
+    `${API}/trips/${id}`
   );
 };
