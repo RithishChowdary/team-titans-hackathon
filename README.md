@@ -35,7 +35,7 @@ Team Member	Role	Responsibilities
 
 Rithish Chowdary      --  Database Engineer	Database schema design, normalization, indexes, joins, query optimization
 
-Pinninti Sni Kiram    --	Frontend Developer	React UI, dashboard, charts, responsive design
+Pinninti Sai Kiran   --	Frontend Developer	React UI, dashboard, charts, responsive design, authentication(firebase)
 
 Routhu Naveen Kumar   --	Backend Developer	Spring Boot REST APIs, WebSocket, scheduler, authentication
 
