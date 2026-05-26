@@ -53,7 +53,6 @@ Traveloop solves this problem by providing a centralized travel planning system 
 
 Traveloop follows a full-stack web application architecture:
 
-```text
 User Interface
 React.js Frontend
         |
